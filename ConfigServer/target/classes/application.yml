@@ -1,0 +1,14 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: CONFIG_SERVER
+
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Ganeshrawat/springbootproject
+          clone-on-start: true

@@ -1,0 +1,62 @@
+
+server:
+  port: 8082
+
+
+spring:
+  application:
+    name: USER-SERVICE
+  datasource:
+    url: jdbc:mysql://localhost:3306/microservices
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-67160460.okta.com/oauth2/default
+      client:
+        registration:
+          my-internal-client:
+            provider: okta
+            authorizationGrantType: client_credentials
+            scope: internal
+            client-id: 0oaagzh5i90B4AYMh5d7
+            client-secret: KZNZ6robJCaD6oggYeDOVInZXTLwgoTyzCD__2TDI5bGLwOieJ7N77dfYv2HV9iI
+
+        provider:
+          okta:
+            issuerUri: https://dev-67160460.okta.com/oauth2/default
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  config:
+    import: configserver:http://localhost:8088
+
+
+
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+
+# OKTA configuration for user service
+
+okta:
+  oauth2:
+    issuer: https://dev-67160460.okta.com/oauth2/default
+    audience: api://default
+
+
+
+
+
